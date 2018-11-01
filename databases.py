@@ -10,16 +10,25 @@ session = DBSession()
 
 # Write your functions to interact with the database here :
 
-def create_product():
-  #TODO: complete the functions (you will need to change the function's inputs)
-  pass
+def create_product(p_type, price, quantity, description):
+	new_product= Product(p_type= p_type, price= price, quantity= quantity, description= description)
+	session.add(new_product)
+	session.commit()
 
-def update_product():
   #TODO: complete the functions (you will need to change the function's inputs)
-  pass
+  
+
+def update_product(p_type, description):
+  product1= session.query(Product).filter_by(p_type=p_type).first()
+  product1.p_type= "hat"
+  product1.description= "purple hat"
+  session.commit()
+
+  
 
 def delete_product(id):
-  pass
+  session.query(Product).filter_by(id=id).delete()
+  session.commit()
 
 def get_product(id):
   pass
